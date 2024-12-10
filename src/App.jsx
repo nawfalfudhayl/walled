@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import logo from './assets/Vector.png';
+import NavItems from '/components/NavItems';
+import Hero from '/components/Hero';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeTab, setActiveTab] = useState("Dashboard");
+  const menu = [
+    {
+      title: "Dashboard",
+      link: "#",
+    },
+    {
+      title: "Transfer",
+      link: "#",
+    },
+    {
+      title: "Topup",
+      link: "#",
+    },
+    {
+      title: "SignOut",
+      link: "#",
+    },
+  ];
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <nav className='fixed top-0 flex items-center w-screen justify-between bg-white py-4 px-8'>
+      <img src={logo} />
+      <div className='flex gap-x-8'>
+        <NavItems 
+        menu={menu} 
+        activeTab={activeTab}
+        handleClick={setActiveTab}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </nav>
+    <Hero />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
